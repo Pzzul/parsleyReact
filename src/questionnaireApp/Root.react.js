@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { ConnectedForms } from './components/Forms.react';
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
 const Root = () => {
   return (
     <BrowserRouter>
@@ -12,7 +12,10 @@ const Root = () => {
         <ul>
           <li><Link to="/forms">Forms</Link> </li>
         </ul>
-        <Route path="/forms(/:currentPath)?" component={ConnectedForms}/>
+        <Switch>
+          <Route exact path="/forms" component={ConnectedForms}/>
+          <Route path="/forms/:currentPath" component={ConnectedForms}/>
+        </Switch>
       </div>
     </BrowserRouter>
   );

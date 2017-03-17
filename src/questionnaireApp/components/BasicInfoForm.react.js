@@ -7,11 +7,12 @@ import {connect} from 'react-redux';
 import {updateForm} from '../actions';
 import style from './style/regular-form.css';
 import bootstrapStyle from 'bootstrap/dist/css/bootstrap.min.css';
+import {withRouter} from 'react-router-dom';
 
-const BasicInfoForm = ({fullName, dob, dispatch}) => {
+const BasicInfoForm = ({fullName, dob, dispatch, history}) => {
   const handleSubmit = e => {
     e.preventDefault();
-
+    history.push('/forms/spec');
   };
   const handleChange = (fieldName, text) => {
     dispatch(updateForm('basic', fieldName, text));
@@ -35,12 +36,15 @@ const BasicInfoForm = ({fullName, dob, dispatch}) => {
   );
 };
 
+const BindedHistoryBasicForm = withRouter(BasicInfoForm);
+
 let mapStateToProps = state => {
   return {
     ...state.basic
   }
 };
 
-const ConnectedBasicInfoForm = connect(mapStateToProps)(BasicInfoForm);
+const ConnectedBasicInfoForm = connect(mapStateToProps)(BindedHistoryBasicForm);
+
 
 export {ConnectedBasicInfoForm, BasicInfoForm};
