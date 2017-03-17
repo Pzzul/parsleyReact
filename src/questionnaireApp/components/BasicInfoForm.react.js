@@ -11,8 +11,7 @@ import bootstrapStyle from 'bootstrap/dist/css/bootstrap.min.css';
 const BasicInfoForm = ({fullName, dob, dispatch}) => {
   const handleSubmit = e => {
     e.preventDefault();
-    history.pushState({step: "spec"}, "spec", "/spec");
-    dispatch(nextStep('spec'));
+
   };
   const handleChange = (fieldName, text) => {
     dispatch(updateForm('basic', fieldName, text));

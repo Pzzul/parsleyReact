@@ -9,12 +9,12 @@ import {ConnectedSpecInfoForm} from './SpecInfoForm.react';
 import style from './style/regular-form.css';
 
 class Forms extends React.Component {
-  componentDidMount(){
-    const { currentStep } = this.props;
-    history.pushState({step: currentStep}, 'basic-form', '/basic');
-  }
+
   render() {
-    const { currentStep } = this.props;
+    const { match } = this.props;
+    let {currentStep} = match ? match : this.props;
+    if (!currentStep)
+      currentStep = 'basic';
     const steps = ['basic', 'spec', 'contact'];
     const index = steps.indexOf(currentStep);
     const long = index * 440;
@@ -27,7 +27,6 @@ class Forms extends React.Component {
       </div>
     );
   }
-  ;
 }
 
 const mapStateToProp = state => {

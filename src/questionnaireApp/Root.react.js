@@ -4,16 +4,17 @@
 
 import React from 'react';
 import { ConnectedForms } from './components/Forms.react';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 const Root = () => {
   return (
-    <Router history={browserHistory}>
-      <Route path="/">
-      <IndexRoute component={ConnectedForms}/>
-      <Route path=":currentStep" component={ConnectedForms}/>
-      </Route>
-    </Router>
+    <BrowserRouter>
+      <div>
+        <ul>
+          <li><Link to="/forms">Forms</Link> </li>
+        </ul>
+        <Route path="/forms(/:currentPath)?" component={ConnectedForms}/>
+      </div>
+    </BrowserRouter>
   );
 };
 
